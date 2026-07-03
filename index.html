@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Portfolio | Home</title>
+    <style>
+        /* 1. 導入你的自訂字體 */
+        @font-face {
+            font-family: 'FHWA Series Emod 2024 plus50';
+            /* 請將你的字體檔案放到 fonts 資料夾，並在此修正副檔名（如 .woff2, .ttf） */
+            src: url('fonts/FHWA-Series-Emod-2024-plus50.woff2') format('woff2'),
+                 url('fonts/FHWA-Series-Emod-2024-plus50.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* 2. 基礎重設：鎖定螢幕，禁止滾動條 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* 鎖定螢幕大小，防止手機/電腦出現滾動條 */
+            background-color: #000;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* 3. 滿屏幻燈片容器 */
+        .slideshow-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .slide-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out; /* 兩秒替換時的淡入淡出效果 */
+        }
+
+        .slide-img.active {
+            opacity: 1;
+        }
+
+        /* 圖片暗色遮罩：確保前方文字清晰可見 */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3); 
+            z-index: 2;
+        }
+
+        /* 4. 主要內容區域（置中佈局） */
+        .content-wrapper {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            height: 100%;
+            display: table; /* 使用 table 結構以完美相容舊版 RWD 渲染 */
+        }
+
+        .content-cell {
+            display: table-cell;
+            vertical-align: bottom; /* 讓導覽按鈕靠下方排列 */
+            text-align: center;
+            padding-bottom: 8vh; /* 距離底部保留一些空間，避開手機黑條 */
+        }
+
+        /* 5. 導覽按鈕樣式（電腦端標準） */
+        .nav-container {
+            display: block;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .nav-item {
+            display: inline-block;
+            color: #0000ff; /* 下方藍色文字 */
+            text-decoration: none;
+            /* 應用你指定的專屬字體與 28pt 大小 */
+            font-family: 'FHWA Series Emod 2024 plus50', sans-serif;
+            font-size: 28pt; 
+            margin: 0 25px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        /* Hover 時變白色 */
+        .nav-item:hover {
+            color: #ffffff;
+        }
+
+        /* 6. 響應式微調 (RWD)：適配 iPad (平版) 與手機 */
+        
+        /* 平板 iPad 尺寸 (螢幕寬度小於 1024px) */
+        @media (max-width: 1024px) {
+            .nav-item {
+                font-size: 24pt; /* 稍微縮小字體以防溢出 */
+                margin: 0 15px;
+            }
+            .content-cell {
+                padding-bottom: 6vh;
+            }
+        }
+
+        /* 手機直向尺寸 (螢幕寬度小於 767px) */
+        @media (max-width: 767px) {
+            .content-cell {
+                vertical-align: middle; /* 手機端建議導覽居中，點擊體驗更好 */
+                padding-bottom: 0;
+            }
+            
+            .nav-item {
+                display: block; /* 手機端改為上下垂直排列，防止左右塞不下破版 */
+                margin: 20px 0;
+                font-size: 22pt; /* 手機端適度縮小字體 */
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slideshow-container" id="slideshow">
+        <div class="slide-img active" id="slide-target"></div>
+    </div>
+
+    <div class="overlay"></div>
+
+    <div class="content-wrapper">
+        <div class="content-cell">
+            <nav class="nav-container">
+                <a href="#graphik" class="nav-item">GRAPHIK</a>
+                <a href="#photography" class="nav-item">PHOTOGRAPHY</a>
+                <a href="#tattoo" class="nav-item">TATTOO</a>
+                <a href="#videos" class="nav-item">VIDEOS</a>
+                <a href="#about" class="nav-item">ABOUT</a>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        // 【配置區域】：請在這裡輸入你放在 photography 資料夾內的所有照片檔名
+        const photoFolder = 'photography/';
+        const imageFiles = [
+            'photo1.jpg',
+            'photo2.jpg',
+            'photo3.jpg',
+            'photo4.jpg',
+            'photo5.jpg'
+        ];
+
+        let currentImageSrc = '';
+        const slideTarget = document.getElementById('slide-target');
+
+        function changeRandomBackground() {
+            if (imageFiles.length === 0) return;
+
+            let nextImage;
+            // 確保每次隨機挑選到的照片跟「當前這張」不同，避免連續出現同一張
+            do {
+                const randomIndex = Math.floor(Math.random() * imageFiles.length);
+                nextImage = photoFolder + imageFiles[randomIndex];
+            } while (nextImage === currentImageSrc && imageFiles.length > 1);
+
+            currentImageSrc = nextImage;
+
+            // 透過切換透明度（建立一個新 image 緩衝加載）來達到平滑的淡入淡出
+            const imgLoader = new Image();
+            imgLoader.src = currentImageSrc;
+            imgLoader.onload = function() {
+                slideTarget.style.backgroundImage = `url('${currentImageSrc}')`;
+            };
+        }
+
+        // 初始化第一張照片
+        changeRandomBackground();
+
+        // 每 2000 毫秒（2 秒）替換一次照片
+        setInterval(changeRandomBackground, 2000);
+    </script>
+</body>
+</html>
