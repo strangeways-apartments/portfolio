@@ -30,6 +30,28 @@ body {
     background-color: #000;
 }
 
+.fixed-header {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 999;
+    pointer-events: none;
+}
+
+.logo-container {
+    pointer-events: auto;
+}
+
+.logo-container img {
+    height: 70px;
+    width: auto;
+    display: block;
+}
+
 .slideshow-container {
     position: absolute;
     top: 0; left: 0;
@@ -112,7 +134,7 @@ body {
 }
 
 .logo-container img {
-    height: 40px;
+    height: 70px;
     width: auto;
     display: block;
 }
@@ -151,7 +173,7 @@ body {
 }
 
 .dropdown-links a:hover {
-    opacity: 0.7;
+    color: #ffffff;
 }
 
 .nav-menu:hover .dropdown-links {
