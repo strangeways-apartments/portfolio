@@ -30,7 +30,7 @@ body {
     background-color: #fff;
 }
 
-.fixed-header {
+.landing-fixed-header {
     position: fixed;
     top: 0; left: 0;
     width: 100%;
@@ -134,7 +134,7 @@ body {
 }
 
 .logo-container img {
-    height: 70px;
+    height: 60px;
     width: auto;
     display: block;
 }
