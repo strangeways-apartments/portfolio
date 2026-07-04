@@ -191,7 +191,8 @@ body {
     font-size: 9pt;
     z-index: 999;
     pointer-events: none;
-    font-family: sans-serif;
+    font-family: karmilla;
+    src: url('fonts/Karmilla-Regular-015.ttf') format('truetype');
 }
 
 /* =========================================
