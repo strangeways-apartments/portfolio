@@ -7,30 +7,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="landing-body">
-    <header class="landing-fixed-header">
+    
+    <!-- 修正 1 & 2：移除了重複貼上的頭部代碼，並補上 </header> 閉合標籤 -->
+    <!-- 修正 3：將 class 改為 fixed-header，這樣就能直接共用內頁寫好的 Logo 排版！ -->
+    <header class="fixed-header">
         <a href="index.html" class="logo-container">
             <img src="assets/logo.png" alt="Logo">
         </a>
+    </header>
 
-
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Portfolio | Home</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="landing-body">
-    <header class="landing-fixed-header">
-        <a href="index.html" class="logo-container">
-            <img src="assets/logo.png" alt="Logo">
-        </a>
-
+    <!-- 滿屏幻燈片背景 -->
     <div class="slideshow-container" id="slideshow">
         <div class="slide-img active" id="slide-target"></div>
     </div>
+    
+    <!-- 暗色視覺遮罩 -->
     <div class="landing-overlay"></div>
+    
+    <!-- 前景導覽文字內容 -->
     <div class="landing-content">
         <div class="landing-cell">
             <nav class="landing-nav">
@@ -43,11 +37,14 @@
             </nav>
         </div>
     </div>
+
+    <!-- 輪播腳本 -->
     <script>
         const photoFolder = 'photography/';
-        const imageFiles = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg']; // 填入首頁輪播照片
+        const imageFiles = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg']; // 記得確保這些照片存在
         let currentImageSrc = '';
         const slideTarget = document.getElementById('slide-target');
+        
         function changeRandomBackground() {
             if (imageFiles.length === 0) return;
             let nextImage;
@@ -56,10 +53,14 @@
                 nextImage = photoFolder + imageFiles[randomIndex];
             } while (nextImage === currentImageSrc && imageFiles.length > 1);
             currentImageSrc = nextImage;
+            
             const imgLoader = new Image();
             imgLoader.src = currentImageSrc;
-            imgLoader.onload = function() { slideTarget.style.backgroundImage = `url('${currentImageSrc}')`; };
+            imgLoader.onload = function() { 
+                slideTarget.style.backgroundImage = `url('${currentImageSrc}')`; 
+            };
         }
+        
         changeRandomBackground();
         setInterval(changeRandomBackground, 2000);
     </script>
