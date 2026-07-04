@@ -184,11 +184,11 @@ body {
 
 .fixed-footer {
     position: fixed;
-    bottom: 20px; left: 0;
+    bottom: 10px; left: 0;
     width: 100%;
     text-align: center;
     color: #ff0000;
-    font-size: 12pt;
+    font-size: 9pt;
     z-index: 999;
     pointer-events: none;
     font-family: sans-serif;
