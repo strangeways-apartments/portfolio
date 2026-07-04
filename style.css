@@ -248,6 +248,69 @@ body {
 }
 
 /* =========================================
+   Videos 頁面排版佈局
+========================================= */
+.videos-container {
+    /* 扣除上下 Header/Footer 空間，讓內容在畫面中垂直居中 */
+    padding-top: 150px;
+    padding-bottom: 100px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px; /* 左右兩側（圖片與文字）的間距 */
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* 左側圖片區塊 */
+.videos-left {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end; /* 讓圖片靠右，貼近中間的文字 */
+}
+
+.videos-left img {
+    width: 100%;
+    max-width: 400px; /* 限制四格拼圖的最大寬度 */
+    height: auto;
+    display: block;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.1); /* 微微的陰影增加層次感 */
+}
+
+/* 右側文字與連結區塊 */
+.videos-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* 兩行文字的上下間距 */
+    text-align: center; 
+}
+
+.weibo-link {
+    color: #000000;
+    font-size: 16pt;
+    text-decoration: none;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.weibo-link:hover {
+    color: #0000ff; /* 滑鼠移過去變成藍色，呼應網站主色調 */
+}
+
+.click-hint {
+    color: #333333;
+    font-size: 10pt;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: 0.5px;
+}
+
+/* =========================================
    5. 響應式微調 (RWD)
 ========================================= */
 @media (max-width: 1024px) {
@@ -267,3 +330,14 @@ body {
     .landing-nav .nav-item { display: block; margin: 20px 0; font-size: 22pt; }
     .current-page, .dropdown-links a { font-size: 20pt; }
 }
+
+/* (這是要加在原有的 max-width: 767px 括號裡面) */
+    .videos-container {
+        flex-direction: column; /* 改為上下排列 */
+        gap: 40px;
+        text-align: center;
+        padding-top: 120px;
+    }
+    .videos-left {
+        justify-content: center;
+    }
