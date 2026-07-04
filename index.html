@@ -40,8 +40,83 @@
 
     <!-- 輪播腳本 -->
     <script>
-        const photoFolder = 'photography/';
-        const imageFiles = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg']; // 記得確保這些照片存在
+        // 1. 更新資料夾路徑，精準指向 landing 資料夾 (記得保留最後面的斜線)
+        const photoFolder = 'photography/landing/';
+        
+        // 2. 將這裡替換成你剛剛上傳的「真實照片檔名」
+        const imageFiles = [
+            ‘landing1.jpeg',
+            ’landing10.jpg',
+            ‘landing11.jpg',
+            ’landing12.jpg',
+            ‘landing13.jpg',
+            ‘landing14.jpg',
+            ’landing15.jpg',
+            ‘landing16.jpg',
+            ’landing17.jpg',
+            ‘landing18.jpg',
+            ’landing19.jpg',
+            ‘landing2.jpeg',
+            ’landing20.jpg',
+            ‘landing21.jpeg',
+            ’landing22.jpeg',
+            ’landing23.jpeg',
+            ‘landing24.jpeg',
+            ‘landing25.jpeg',
+            ’landing26.jpeg',
+            ‘landing27.jpeg',
+            ’landing28.jpeg',
+            ‘landing29.jpeg',
+            ’landing3.jpg',
+            ’landing30.jpeg',
+            ‘landing31.jpeg',
+            ’landing32.jpeg',
+            ‘landing33.jpeg',
+            ‘landing34.jpeg',
+            ’landing35.jpeg',
+            ’landing36.jpeg',
+            ‘landing37.jpeg',
+            ’landing38.jpeg',
+            ‘landing39.jpeg',
+            ’landing4.jpeg',
+            ’landing40.jpeg',
+            ‘landing41.jpeg',
+            ‘landing42.jpeg',
+            ’landing43.jpeg',
+            ‘landing44.jpeg',
+            ’landing45.jpeg',
+            ‘landing46.jpeg',
+            ’landing47.jpeg',
+            ‘landing48.png',
+            ’landing49.jpg',
+            ‘landing5.jpg',
+            ’landing50.jpg',
+            ‘landing51.jpg',
+            ’landing52.jpg',
+            ‘landing53.jpg',
+            ’landing54.jpg',
+            ‘landing55.jpg',
+            ’landing56.jpg',
+            ‘landing57.jpg',
+            ’landing58.jpg',
+            ‘landing59.jpg',
+            ‘landing6.jpeg',
+            ’landing60.jpg',
+            ’landing61.jpg',
+            ‘landing62.JPG',
+            ’landing63.JPG',
+            ‘landing64.JPG',
+            ’landing65.jpg',
+            ‘landing66.jpg',
+            ’landing67.jpg',
+            ‘landing68.jpg',
+            ’landing7.jpeg',
+            ‘landing8.jpeg',
+            ’landing9.jpeg'
+            // 💡 提示：檔名請完全依照你電腦裡的名稱，並且注意大小寫（.JPG 和 .jpg 在 GitHub 上是不一樣的喔！）
+        ]; 
+
+        // ================= 以下程式碼保持完全不變 =================
         let currentImageSrc = '';
         const slideTarget = document.getElementById('slide-target');
         
