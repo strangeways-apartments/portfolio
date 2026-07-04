@@ -96,14 +96,24 @@ body {
     padding-bottom: 8vh;
 }
 
+/* 新增：外層容器改用 Flexbox 控制，允許彈性換行 */
+.landing-nav {
+    display: flex;
+    flex-wrap: wrap;         /* 螢幕太小時，允許按鈕自動換行 */
+    justify-content: center; /* 讓按鈕永遠保持置中 */
+    align-items: center;
+    gap: 30px 50px;          /* 關鍵！設定上下間距 30px、左右間距 50px */
+    padding: 0 20px;
+}
+
+/* 修改：拿掉原本的 margin，讓外層的 gap 來統一管理距離 */
 .landing-nav .nav-item {
-    display: inline-block;
     color: #0000ff;
     text-decoration: none;
     font-size: 28pt;
-    margin: 0 25px;
     letter-spacing: 1px;
     transition: color 0.2s ease;
+    line-height: 1.2;        /* 確保字體本身有足夠的行高，不會互相碰撞 */
 }
 
 .landing-nav .nav-item:hover {
