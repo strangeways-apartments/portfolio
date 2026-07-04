@@ -80,40 +80,48 @@ body {
     width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.3); 
     z-index: 2;
+    pointer-events: none; /* 關鍵修復 1：確保暗色遮罩絕對不會阻擋滑鼠點擊 */
 }
 
 .landing-content {
     position: relative;
-    z-index: 3;
+    z-index: 10; /* 關鍵修復 2：大幅提高層級，確保選單在最上層 */
     width: 100%; height: 100vh;
-    display: table;
+    display: flex; /* 關鍵修復 3：捨棄舊版 table，全面改用 Flexbox 確保完美居中 */
+    align-items: flex-end; /* 讓內容靠下對齊 */
+    justify-content: center; /* 讓內容水平居中 */
+    pointer-events: none; /* 讓外層空白區域的點擊穿透到底下的背景 */
 }
 
 .landing-cell {
-    display: table-cell;
-    vertical-align: bottom;
-    text-align: center;
+    width: 100%;
     padding-bottom: 8vh;
+    pointer-events: none;
 }
 
-/* 新增：外層容器改用 Flexbox 控制，允許彈性換行 */
 .landing-nav {
+    pointer-events: auto; /* 關鍵修復 4：恢復選單本身的點擊功能！ */
     display: flex;
-    flex-wrap: wrap;         /* 螢幕太小時，允許按鈕自動換行 */
-    justify-content: center; /* 讓按鈕永遠保持置中 */
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    gap: 30px 50px;          /* 關鍵！設定上下間距 30px、左右間距 50px */
+    gap: 30px 50px;
     padding: 0 20px;
+    width: 100%; /* 強制佔滿寬度，讓內部的文字真正居中 */
 }
 
-/* 修改：拿掉原本的 margin，讓外層的 gap 來統一管理距離 */
 .landing-nav .nav-item {
     color: #0000ff;
     text-decoration: none;
     font-size: 28pt;
     letter-spacing: 1px;
     transition: color 0.2s ease;
-    line-height: 1.2;        /* 確保字體本身有足夠的行高，不會互相碰撞 */
+    line-height: 1.2;
+    cursor: pointer; /* 確保滑鼠移過去會變成手指圖示 */
+}
+
+.landing-nav .nav-item:hover {
+    color: #ffffff;
 }
 
 .landing-nav .nav-item:hover {
