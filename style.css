@@ -1,0 +1,246 @@
+/* =========================================
+   1. 字體與全局設定 (Global Settings)
+========================================= */
+@font-face {
+    font-family: 'FHWA Series Emod 2024';
+    src: url('fonts/Fhwaseriesemod2024plus50-lxjq5.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #ffffff;
+    font-family: 'FHWA Series Emod 2024', -apple-system, sans-serif;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   2. Landing Page 專屬樣式 (index.html)
+========================================= */
+.landing-body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.slideshow-container {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+}
+
+.slide-img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.slide-img.active {
+    opacity: 1;
+}
+
+.landing-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.3); 
+    z-index: 2;
+}
+
+.landing-content {
+    position: relative;
+    z-index: 3;
+    width: 100%; height: 100vh;
+    display: table;
+}
+
+.landing-cell {
+    display: table-cell;
+    vertical-align: bottom;
+    text-align: center;
+    padding-bottom: 8vh;
+}
+
+.landing-nav .nav-item {
+    display: inline-block;
+    color: #0000ff;
+    text-decoration: none;
+    font-size: 28pt;
+    margin: 0 25px;
+    letter-spacing: 1px;
+    transition: color 0.2s ease;
+}
+
+.landing-nav .nav-item:hover {
+    color: #ffffff;
+}
+
+/* =========================================
+   3. 內頁共用 Header & Footer
+========================================= */
+.inner-body {
+    padding-top: 0;
+}
+
+.fixed-header {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 999;
+    pointer-events: none;
+}
+
+.logo-container {
+    pointer-events: auto;
+}
+
+.logo-container img {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
+.nav-menu {
+    pointer-events: auto;
+    text-align: right;
+    position: relative;
+}
+
+.current-page {
+    color: #ff0000;
+    font-size: 28pt;
+    letter-spacing: 2px;
+    cursor: pointer;
+    padding-bottom: 10px;
+}
+
+.dropdown-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-15px);
+    transition: all 0.3s ease;
+}
+
+.dropdown-links a {
+    color: #0000ff;
+    font-size: 28pt;
+    text-decoration: none;
+    letter-spacing: 2px;
+    transition: opacity 0.2s ease;
+}
+
+.dropdown-links a:hover {
+    opacity: 0.7;
+}
+
+.nav-menu:hover .dropdown-links {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.fixed-footer {
+    position: fixed;
+    bottom: 20px; left: 0;
+    width: 100%;
+    text-align: center;
+    color: #ff0000;
+    font-size: 12pt;
+    z-index: 999;
+    pointer-events: none;
+    font-family: sans-serif;
+}
+
+/* =========================================
+   4. 各頁面排版佈局
+========================================= */
+/* Photography 滿版網格 */
+.photography-body { background-color: #000; }
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    gap: 0; 
+}
+.photo-grid img {
+    width: 100%;
+    aspect-ratio: 1 / 1; 
+    object-fit: cover; 
+    display: block;
+    transition: filter 0.3s ease;
+}
+.photo-grid img:hover {
+    filter: brightness(1.1);
+    z-index: 2;
+    position: relative;
+}
+
+/* Graphik 單欄佈局 */
+.graphik-container {
+    padding-top: 150px; 
+    padding-bottom: 100px;
+    padding-left: 200px;
+    padding-right: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px; 
+    width: 100%;
+}
+.graphik-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 一般通用內頁 (Tattoo, Branding, Others, About) */
+.general-container {
+    padding-top: 150px;
+    padding-bottom: 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* =========================================
+   5. 響應式微調 (RWD)
+========================================= */
+@media (max-width: 1024px) {
+    .photo-grid { grid-template-columns: repeat(3, 1fr); }
+    .graphik-container { padding-left: 80px; padding-right: 80px; gap: 60px; }
+    .landing-nav .nav-item, .current-page, .dropdown-links a { font-size: 24pt; }
+}
+
+@media (max-width: 767px) {
+    .photo-grid { grid-template-columns: repeat(2, 1fr); }
+    .graphik-container { padding-left: 20px; padding-right: 20px; padding-top: 120px; gap: 40px; }
+    .fixed-header { padding: 20px; }
+    .logo-container img { height: 30px; }
+    
+    /* Landing Page 手機版選單 */
+    .landing-cell { vertical-align: middle; padding-bottom: 0; }
+    .landing-nav .nav-item { display: block; margin: 20px 0; font-size: 22pt; }
+    .current-page, .dropdown-links a { font-size: 20pt; }
+}
