@@ -3,7 +3,7 @@
 ========================================= */
 @font-face {
     font-family: 'FHWA Series Emod 2024';
-    src: url('fonts/Fhwaseriesemod2024plus50-lxjq5.otf') format('opentype');
+    src: url('fonts/Fhwaseriesemod2024minus50-G3rnq.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
@@ -12,6 +12,13 @@
 @font-face {
     font-family: 'karmilla'; /* 為這個字體取個名字 */
     src: url('fonts/Karmilla-Regular-015.ttf') format('truetype'); /* 告訴瀏覽器檔案在哪裡 */
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'rijusans-italic'; /* 為這個字體取個名字 */
+    src: url('fonts/Rijusans-Italic.ttf') format('truetype'); /* 告訴瀏覽器檔案在哪裡 */
     font-weight: normal;
     font-style: normal;
 }
@@ -396,7 +403,7 @@ body {
    8. About 頁面專屬佈局
 ========================================= */
 .about-container {
-    padding-top: 150px;
+    padding-top: 200px;
     padding-bottom: 100px;
     max-width: 800px; /* 限制履歷區域的最大寬度，讓閱讀體驗更好 */
     margin: 0 auto;
@@ -413,8 +420,7 @@ body {
 
 .about-name {
     color: #0000ff;
-    font-size: 60pt;
-    letter-spacing: 5px;
+    font-size: 30pt;
     margin-bottom: 5px;
     line-height: 1;
 }
@@ -422,21 +428,20 @@ body {
 .about-sub {
     color: #de0000;
     font-family: 'karmilla', sans-serif;
-    font-size: 11pt;
+    font-size: 10pt;
     margin-bottom: 40px;
 }
 
 .about-skills {
     color: #0000ff;
-    font-size: 20pt;
-    line-height: 1.3;
-    letter-spacing: 2px;
+    font-size: 17pt;
+    line-height: 1.2;
 }
 
 /* 插畫區塊 */
 .about-illustration {
     text-align: center;
-    margin: 60px 0;
+    margin: 30px 0;
 }
 
 .about-illustration img {
@@ -452,8 +457,7 @@ body {
 
 .section-title {
     text-align: center;
-    font-size: 18pt;
-    letter-spacing: 2px;
+    font-size: 15pt;
     margin-bottom: 30px;
 }
 
@@ -470,8 +474,7 @@ body {
 }
 
 .resume-company {
-    font-weight: bold;
-    font-size: 12pt;
+    font-size: 10pt;
     letter-spacing: 1px;
 }
 
@@ -484,8 +487,8 @@ body {
 }
 
 .resume-role {
-    font-family: 'karmilla', sans-serif;
-    font-size: 11pt;
+    font-family: 'rijusans-italic', sans-serif;
+    font-size: 10pt;
     font-style: italic;
     white-space: nowrap; /* 防止日期換行 */
 }
