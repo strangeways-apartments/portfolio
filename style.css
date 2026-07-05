@@ -17,7 +17,7 @@
 
 @font-face {
     font-family: 'FHWA-2020';
-    src: url('fonts/Fhwaseriesb2020minus10.otf') format('opentype');
+    src: url('fonts/Fhwaseriese2020minus10.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
@@ -495,7 +495,7 @@ body {
 
 .resume-company {
     font-family: 'FHWA-2020';
-    font-size: 10pt;
+    font-size: 11pt;
 }
 
 /* 填補空白的彈性虛線 */
