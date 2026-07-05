@@ -119,7 +119,7 @@
             do {
                 const randomIndex = Math.floor(Math.random() * imageFiles.length);
                 nextImage = photoFolder + imageFiles[randomIndex];
-            } while (nextImage === currentImageSrc && imageFiles.length > 1);
+            } while (nextImage === currentImageSrc && imageFiles.length > 2);
             currentImageSrc = nextImage;
             
             const imgLoader = new Image();

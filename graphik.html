@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Graphik</title>
+    <title>Graphik | Strangeways Apartments</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="inner-body">
+    
     <header class="fixed-header">
         <a href="index.html" class="logo-container">
             <img src="assets/logo.png" alt="Logo">
@@ -17,22 +18,73 @@
                 <a href="photography.html">PHOTOGRAPHY</a>
                 <a href="tattoo.html">TATTOO</a>
                 <a href="branding.html">BRANDING</a>
+                <a href="illustration.html">ILLUSTRATION</a>
                 <a href="others.html">OTHERS</a>
                 <a href="about.html">ABOUT</a>
             </div>
         </nav>
     </header>
-    <main class="graphik-container" id="graphik-list"></main>
+
+    <!-- 修正 1：換成六宮格專用的 class 與 id -->
+    <main class="grid-6-container" id="grid-container"></main>
+
+    <!-- 修正 2：補上點擊放大的白底區塊 (Lightbox) -->
+    <div class="lightbox" id="lightbox">
+        <img src="" id="lightbox-img" alt="Enlarged View">
+    </div>
+
     <footer class="fixed-footer">© 2025 Strangeways Apartments. All rights reserved.</footer>
+    
+    <!-- 載入圖片與放大功能的 JS -->
     <script>
-        const graphikFolder = 'graphik/';
-        const graphikFiles = ['design1.jpg', 'design2.jpg']; // 填入單欄設計照片
-        const container = document.getElementById('graphik-list');
-        graphikFiles.forEach(fileName => {
+        const folderPath = 'graphik/'; 
+        
+        const images = [
+            'vt-portfolio-graphik-web-01.png',
+            'vt-portfolio-graphik-web-02.png',
+            'vt-portfolio-graphik-web-03.png',
+            'vt-portfolio-graphik-web-04.png',
+            'vt-portfolio-graphik-web-05.png',
+            'vt-portfolio-graphik-web-06.png',
+            'vt-portfolio-graphik-web-07.png',
+            'vt-portfolio-graphik-web-08.png',
+            'vt-portfolio-graphik-web-09.png',
+            'vt-portfolio-graphik-web-10.png',
+            'vt-portfolio-graphik-web-11.png',
+            'vt-portfolio-graphik-web-12.png',
+            'vt-portfolio-graphik-web-13.png',
+            'vt-portfolio-graphik-web-14.png',
+            'vt-portfolio-graphik-web-15.png',
+            'vt-portfolio-graphik-web-16.png',
+            'vt-portfolio-graphik-web-17.png',
+            'vt-portfolio-graphik-web-18.png',
+            'vt-portfolio-graphik-web-19.png'
+        ];
+
+        const gridContainer = document.getElementById('grid-container');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        // 動態生成網格圖片
+        images.forEach(imgName => {
             const imgElement = document.createElement('img');
-            imgElement.src = graphikFolder + fileName;
-            imgElement.onerror = function() { this.style.display = 'none'; };
-            container.appendChild(imgElement);
+            imgElement.src = folderPath + imgName;
+            
+            // 啟用懶加載 (Lazy Loading)
+            imgElement.setAttribute('loading', 'lazy'); 
+            
+            // 綁定點擊放大事件
+            imgElement.addEventListener('click', () => {
+                lightboxImg.src = imgElement.src; 
+                lightbox.classList.add('active'); 
+            });
+
+            gridContainer.appendChild(imgElement);
+        });
+
+        // 點擊任意處關閉放大圖片
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
         });
     </script>
 </body>
