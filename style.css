@@ -8,6 +8,14 @@
     font-style: normal;
 }
 
+/* 1. 先在最外層 (通常放在 CSS 檔案的最上方) 宣告並載入字體 */
+@font-face {
+    font-family: 'karmilla'; /* 為這個字體取個名字 */
+    src: url('fonts/Karmilla-Regular-015.ttf') format('truetype'); /* 告訴瀏覽器檔案在哪裡 */
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -106,7 +114,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 30px 50px;
-    padding: 0 20px;
+    padding: 0 10px;
     width: 100%; /* 強制佔滿寬度，讓內部的文字真正居中 */
 }
 
@@ -164,7 +172,7 @@ body {
 }
 
 .current-page {
-    color: #ff0000;
+    color: #de0000;
     font-size: 28pt;
     letter-spacing: 2px;
     cursor: pointer;
@@ -205,12 +213,11 @@ body {
     bottom: 10px; left: 0;
     width: 100%;
     text-align: center;
-    color: #ff0000;
+    color: #de0000;
     font-size: 9pt;
     z-index: 999;
     pointer-events: none;
-    font-family: karmilla;
-    src: url('fonts/Karmilla-Regular-015.ttf') format('truetype');
+    font-family: 'karmilla', sans-serif;
 }
 
 /* =========================================
