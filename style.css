@@ -17,7 +17,7 @@
 
 @font-face {
     font-family: 'FHWA-2020';
-    src: url('fonts/Fhwaseriesb2020minus10.otf') format('opentype');
+    src: url('fonts/Fhwaseriese2020minus10.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
@@ -432,7 +432,7 @@ body {
 /* 頂部文字區塊 */
 .about-hero {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .about-name {
@@ -460,7 +460,8 @@ body {
 /* 插畫區塊 */
 .about-illustration {
     text-align: center;
-    margin: 10px 0;
+    margin-top: 5px;    /* 決定與上方藍色文字的距離（可自行調小或調大） */
+    margin-bottom: 10px; /* 決定與下方 INDEPENDENT PRACTICE 的距離 */
 }
 
 .about-illustration img {
@@ -495,7 +496,7 @@ body {
 
 .resume-company {
     font-family: 'FHWA-2020';
-    font-size: 10pt;
+    font-size: 11pt;
 }
 
 /* 填補空白的彈性虛線 */
