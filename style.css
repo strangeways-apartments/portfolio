@@ -140,6 +140,7 @@ body {
 }
 
 .landing-nav .nav-item {
+    font-family: 'FHWA Series Emod 2024', sans-serif;
     color: #0000ff;
     text-decoration: none;
     font-size: 28pt;
@@ -189,6 +190,7 @@ body {
 }
 
 .current-page {
+    font-family: 'FHWA Series Emod 2024', sans-serif;
     color: #de0000;
     font-size: 28pt;
     letter-spacing: 2px;
@@ -208,6 +210,7 @@ body {
 }
 
 .dropdown-links a {
+    font-family: 'FHWA Series Emod 2024', sans-serif;
     color: #0000ff;
     font-size: 28pt;
     text-decoration: none;
@@ -433,6 +436,7 @@ body {
 }
 
 .about-name {
+    font-family: 'FHWA Series Emod 2024', sans-serif;
     color: #0000ff;
     font-size: 30pt;
     margin-bottom: 5px;
@@ -447,6 +451,7 @@ body {
 }
 
 .about-skills {
+    font-family: 'FHWA Series Emod 2024', sans-serif;
     color: #0000ff;
     font-size: 17pt;
     line-height: 1.2;
@@ -504,7 +509,7 @@ body {
 .resume-role {
     font-family: 'rijusans-italic', sans-serif;
     font-size: 10pt;
-    font-style: italic;
+    font-style: normal;
     white-space: nowrap; /* 防止日期換行 */
 }
 
