@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Branding | Strangeways Apartments</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="inner-body">
+    
+    <!-- 永遠鎖在最上層的 Header -->
+    <header class="fixed-header">
+        <a href="index.html" class="logo-container">
+            <img src="assets/logo.png" alt="Logo">
+        </a>
+        <nav class="nav-menu">
+            <!-- 當下頁面設定為 BRANDING -->
+            <div class="current-page">BRANDING</div>
+            <div class="dropdown-links">
+                <a href="graphik.html">GRAPHIK</a>
+                <a href="photography.html">PHOTOGRAPHY</a>
+                <a href="tattoo.html">TATTOO</a>
+                <a href="illustration.html">ILLUSTRATION</a>
+                <a href="others.html">OTHERS</a>
+                <a href="about.html">ABOUT</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 內容區塊：共用六宮格 RWD 容器 (自動填入 12 張圖，排成 3 欄 4 排) -->
+    <main class="grid-6-container" id="grid-container"></main>
+
+    <!-- 點擊放大的白底區塊 (Lightbox) -->
+    <div class="lightbox" id="lightbox">
+        <img src="" id="lightbox-img" alt="Enlarged View">
+    </div>
+
+    <!-- 永遠鎖在最下層的 Footer -->
+    <footer class="fixed-footer">© 2025 Strangeways Apartments. All rights reserved.</footer>
+    
+    <!-- 載入圖片與放大功能的 JS -->
+    <script>
+        // 1. 精準指向 branding 資料夾
+        const folderPath = 'branding/'; 
+        
+        // 2. 匯入你的 12 張 Branding 作品名稱
+        const images = [
+            'web-branding-01.png',
+            'web-branding-02.png',
+            'web-branding-03.png',
+            'web-branding-04.png',
+            'web-branding-05.png',
+            'web-branding-06.png',
+            'web-branding-07.png',
+            'web-branding-08.png',
+            'web-branding-09.png',
+            'web-branding-10.png',
+            'web-branding-11.png',
+            'web-branding-12a.png'
+        ];
+
+        const gridContainer = document.getElementById('grid-container');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        // 動態生成網格圖片並綁定 Lightbox 事件
+        images.forEach(imgName => {
+            const imgElement = document.createElement('img');
+            imgElement.src = folderPath + imgName;
+            
+            // 啟用懶加載優化效能
+            imgElement.setAttribute('loading', 'lazy'); 
+            
+            // 點擊放大
+            imgElement.addEventListener('click', () => {
+                lightboxImg.src = imgElement.src; 
+                lightbox.classList.add('active'); 
+            });
+
+            gridContainer.appendChild(imgElement);
+        });
+
+        // 點擊任意處關閉 Lightbox
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
