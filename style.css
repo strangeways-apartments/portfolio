@@ -420,7 +420,7 @@ body {
    8. About 頁面專屬佈局
 ========================================= */
 .about-container {
-    padding-top: 100px;
+    padding-top: 150px;
     padding-bottom: 100px;
     max-width: 800px; /* 限制履歷區域的最大寬度，讓閱讀體驗更好 */
     margin: 0 auto;
@@ -460,7 +460,7 @@ body {
 /* 插畫區塊 */
 .about-illustration {
     text-align: center;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .about-illustration img {
