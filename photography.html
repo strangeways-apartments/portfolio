@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Photography</title>
+    <title>Photography | Strangeways Apartments</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="inner-body photography-body">
+<body class="photography-body">
+
     <header class="fixed-header">
         <a href="index.html" class="logo-container">
             <img src="assets/logo.png" alt="Logo">
@@ -22,30 +23,76 @@
             </div>
         </nav>
     </header>
-    <main class="photo-grid" id="grid-container"></main>
+
+    <!-- 攝影集專用網格 (4 欄佈局) -->
+    <main class="photo-grid" id="photo-container"></main>
+
+    <!-- 點擊放大區塊 -->
+    <div class="lightbox" id="lightbox">
+        <img src="" id="lightbox-img" alt="Enlarged View">
+    </div>
+
     <footer class="fixed-footer">© 2025 Strangeways Apartments. All rights reserved.</footer>
+
     <script>
-        const photoFolder = 'photography/';
-        const imageFiles = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg']; // 填入四欄網格照片
-        const gridContainer = document.getElementById('grid-container');
-        function shuffleArray(array) {
-            let currentIndex = array.length, randomIndex;
-            while (currentIndex !== 0) {
-                randomIndex = Math.floor(Math.random() * currentIndex);
-                currentIndex--;
-                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-            }
-            return array;
-        }
-        function loadPhotos() {
-            shuffleArray([...imageFiles]).forEach(fileName => {
-                const imgElement = document.createElement('img');
-                imgElement.src = photoFolder + fileName;
-                imgElement.onerror = function() { this.style.display = 'none'; };
-                gridContainer.appendChild(imgElement);
+        // 1. 設定圖片路徑
+        const folderPath = 'portfolio/photo/'; 
+
+        // 2. 匯入你的 144 張攝影作品
+        const images = [
+            'photos1.jpeg', 'photos10.jpeg', 'photos100.jpeg', 'photos101.jpeg', 'photos102.jpeg',
+            'photos103.jpeg', 'photos104.jpeg', 'photos105.jpeg', 'photos106.jpeg', 'photos107.jpeg',
+            'photos108.jpeg', 'photos109.jpeg', 'photos11.jpeg', 'photos110.jpeg', 'photos111.jpeg',
+            'photos112.jpeg', 'photos113.jpeg', 'photos114.jpeg', 'photos115.jpeg', 'photos116.jpeg',
+            'photos117.jpeg', 'photos118.jpeg', 'photos119.jpeg', 'photos12.jpeg', 'photos120.jpeg',
+            'photos121.jpeg', 'photos122.jpeg', 'photos123.jpeg', 'photos124.jpeg', 'photos125.jpeg',
+            'photos126.jpeg', 'photos127.jpeg', 'photos128.jpeg', 'photos129.jpeg', 'photos13.jpeg',
+            'photos130.jpeg', 'photos131.jpeg', 'photos132.jpeg', 'photos133.jpeg', 'photos134.jpeg',
+            'photos135.jpeg', 'photos136.jpeg', 'photos137.jpeg', 'photos138.jpeg', 'photos139.jpeg',
+            'photos14.jpeg', 'photos140.jpeg', 'photos141.jpeg', 'photos142.jpeg', 'photos143.jpeg',
+            'photos144.jpeg', 'photos15.jpeg', 'photos16.jpeg', 'photos17.jpeg', 'photos18.jpeg',
+            'photos19.jpeg', 'photos2.jpeg', 'photos20.jpeg', 'photos21.jpeg', 'photos22.jpeg',
+            'photos23.jpeg', 'photos24.jpeg', 'photos25.jpeg', 'photos26.jpeg', 'photos27.jpeg',
+            'photos28.jpeg', 'photos29.jpeg', 'photos3.jpeg', 'photos30.jpeg', 'photos31.jpeg',
+            'photos32.jpeg', 'photos33.jpeg', 'photos34.jpeg', 'photos35.jpeg', 'photos36.jpeg',
+            'photos37.jpeg', 'photos38.jpeg', 'photos39.jpeg', 'photos4.jpeg', 'photos40.jpeg',
+            'photos41.jpeg', 'photos42.jpeg', 'photos43.jpeg', 'photos44.jpeg', 'photos45.jpeg',
+            'photos46.jpeg', 'photos47.jpeg', 'photos48.jpeg', 'photos49.jpeg', 'photos5.jpeg',
+            'photos50.jpeg', 'photos51.jpeg', 'photos52.jpeg', 'photos53.jpeg', 'photos54.jpeg',
+            'photos55.jpeg', 'photos56.jpeg', 'photos57.jpeg', 'photos58.jpeg', 'photos59.jpeg',
+            'photos6.jpeg', 'photos60.jpeg', 'photos61.jpeg', 'photos62.jpeg', 'photos63.jpeg',
+            'photos64.jpeg', 'photos65.jpeg', 'photos66.jpeg', 'photos67.jpeg', 'photos68.jpeg',
+            'photos69.jpeg', 'photos7.jpeg', 'photos70.jpeg', 'photos71.jpeg', 'photos72.jpeg',
+            'photos73.jpeg', 'photos74.jpeg', 'photos75.jpeg', 'photos76.jpeg', 'photos77.jpeg',
+            'photos78.jpeg', 'photos79.jpeg', 'photos8.jpeg', 'photos80.jpeg', 'photos81.jpeg',
+            'photos82.jpeg', 'photos83.jpeg', 'photos84.jpeg', 'photos85.jpeg', 'photos86.jpeg',
+            'photos87.jpeg', 'photos88.jpeg', 'photos89.jpeg', 'photos9.jpeg', 'photos90.jpeg',
+            'photos91.jpeg', 'photos92.jpeg', 'photos93.jpeg', 'photos94.jpeg', 'photos95.jpeg',
+            'photos96.jpeg', 'photos97.jpeg', 'photos98.jpeg', 'photos99.jpeg'
+        ];
+
+        const container = document.getElementById('photo-container');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        // 批次生成圖片 (強制使用懶加載避免卡死)
+        images.forEach(name => {
+            const img = document.createElement('img');
+            img.src = folderPath + name;
+            
+            // 懶加載屬性，讓 144 張圖在滑動到時才載入
+            img.setAttribute('loading', 'lazy'); 
+            
+            // 綁定點擊放大事件
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
             });
-        }
-        loadPhotos();
+            container.appendChild(img);
+        });
+
+        // 點擊任意處關閉放大圖片
+        lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
     </script>
 </body>
 </html>
