@@ -8,8 +8,6 @@
 </head>
 <body class="landing-body">
     
-    <!-- 修正 1 & 2：移除了重複貼上的頭部代碼，並補上 </header> 閉合標籤 -->
-    <!-- 修正 3：將 class 改為 fixed-header，這樣就能直接共用內頁寫好的 Logo 排版！ -->
     <header class="fixed-header">
         <a href="index.html" class="logo-container">
             <img src="assets/logo.png" alt="Logo">
@@ -21,8 +19,6 @@
         <div class="slide-img active" id="slide-target"></div>
     </div>
     
-    <!-- 暗色視覺遮罩 -->
-    <div class="landing-overlay"></div>
     
     <!-- 前景導覽文字內容 -->
     <div class="landing-content">
@@ -40,8 +36,80 @@
 
     <!-- 輪播腳本 -->
     <script>
-        const photoFolder = 'photography/';
-        const imageFiles = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg']; // 記得確保這些照片存在
+        const photoFolder = 'photography/landing/';
+        
+        // 已經全部修正為標準的半形單引號
+        const imageFiles = [
+            'landing1.jpeg',
+            'landing10.jpg',
+            'landing11.jpg',
+            'landing12.jpg',
+            'landing13.jpg',
+            'landing14.jpg',
+            'landing15.jpg',
+            'landing16.jpg',
+            'landing17.jpg',
+            'landing18.jpg',
+            'landing19.jpg',
+            'landing2.jpeg',
+            'landing20.jpg',
+            'landing21.jpeg',
+            'landing22.jpeg',
+            'landing23.jpeg',
+            'landing24.jpeg',
+            'landing25.jpeg',
+            'landing26.jpeg',
+            'landing27.jpeg',
+            'landing28.jpeg',
+            'landing29.jpeg',
+            'landing3.jpg',
+            'landing30.jpeg',
+            'landing31.jpeg',
+            'landing32.jpeg',
+            'landing33.jpeg',
+            'landing34.jpeg',
+            'landing35.jpeg',
+            'landing36.jpeg',
+            'landing37.jpeg',
+            'landing38.jpeg',
+            'landing39.jpeg',
+            'landing4.jpeg',
+            'landing40.jpeg',
+            'landing41.jpeg',
+            'landing42.jpeg',
+            'landing43.jpeg',
+            'landing44.jpeg',
+            'landing45.jpeg',
+            'landing46.jpeg',
+            'landing47.jpeg',
+            'landing48.png',
+            'landing49.jpg',
+            'landing5.jpg',
+            'landing50.jpg',
+            'landing51.jpg',
+            'landing52.jpg',
+            'landing53.jpg',
+            'landing54.jpg',
+            'landing55.jpg',
+            'landing56.jpg',
+            'landing57.jpg',
+            'landing58.jpg',
+            'landing59.jpg',
+            'landing6.jpeg',
+            'landing60.jpg',
+            'landing61.jpg',
+            'landing62.JPG',
+            'landing63.JPG',
+            'landing64.JPG',
+            'landing65.jpg',
+            'landing66.jpg',
+            'landing67.jpg',
+            'landing68.jpg',
+            'landing7.jpeg',
+            'landing8.jpeg',
+            'landing9.jpeg'
+        ]; 
+
         let currentImageSrc = '';
         const slideTarget = document.getElementById('slide-target');
         
