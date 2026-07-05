@@ -3,7 +3,21 @@
 ========================================= */
 @font-face {
     font-family: 'FHWA Series Emod 2024';
+    src: url('fonts/Fhwaseriesemod2024plus50-lxjq5.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FHWA-Minus';
     src: url('fonts/Fhwaseriesemod2024minus50-G3rnq.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FHWA-2020';
+    src: url('fonts/Fhwaseriesb2020minus10.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
@@ -452,10 +466,11 @@ body {
 
 /* 履歷區塊通用 */
 .resume-section {
-    margin-bottom: 60px;
+    margin-bottom: 80px;
 }
 
 .section-title {
+    font-family: 'FHWA-Minus';
     text-align: center;
     font-size: 15pt;
     margin-bottom: 30px;
@@ -474,8 +489,8 @@ body {
 }
 
 .resume-company {
+    font-family: 'FHWA-2020';
     font-size: 10pt;
-    letter-spacing: 1px;
 }
 
 /* 填補空白的彈性虛線 */
