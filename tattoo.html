@@ -18,87 +18,69 @@
                 <a href="graphik.html">GRAPHIK</a>
                 <a href="photography.html">PHOTOGRAPHY</a>
                 <a href="branding.html">BRANDING</a>
+                <a href="illustration.html">ILLUSTRATION</a>
                 <a href="others.html">OTHERS</a>
                 <a href="about.html">ABOUT</a>
             </div>
         </nav>
     </header>
 
-    <!-- 套用 Graphik 的三欄佈局樣式 -->
     <main class="grid-6-container" id="grid-container"></main>
 
-    <!-- 點擊放大區塊 -->
     <div class="lightbox" id="lightbox">
-        <img src="" id="lightbox-img" alt="Enlarged View">
+        <img src="" id="lightbox-img" alt="Enlarged View" style="display: none;">
+        <video id="lightbox-video" controls autoplay playsinline style="display: none; max-width: 100%; max-height: 100%; object-fit: contain; box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);"></video>
     </div>
 
     <footer class="fixed-footer">© 2025 Strangeways Apartments. All rights reserved.</footer>
 
     <script>
-        // 1. 精準指向 tattoo 資料夾 (依據之前的結構直接寫檔名路徑)
         const folderPath = 'tattoo/'; 
-        
-        // 2. 匯入 29 個檔案，已為你依數字排序整理好
         const files = [
-            'tattoo1.JPEG',
-            'tattoo2.PNG',
-            'tattoo3.JPEG',
-            'tattoo4.jpeg',
-            'tattoo5.jpeg',
-            'tattoo6.jpeg',
-            'tattoo7.jpeg',
-            'tattoo8.PNG',
-            'tattoo9.PNG',
-            'tattoo10.PNG',
-            'tattoo11.jpeg',
-            'tattoo12.jpg',
-            'tattoo13.jpeg',
-            'tattoo14.jpeg',
-            'tattoo15.jpeg',
-            'tattoo16.jpeg',
-            'tattoo17.JPEG',
-            'tattoo18.JPEG',
-            'tattoo19.JPEG',
-            'tattoo20.MP4', // 自動判斷影片檔
-            'tattoo21.JPEG',
-            'tattoo22.JPEG',
-            'tattoo23.JPEG',
-            'tattoo24.JPEG',
-            'tattoo25.JPEG',
-            'tattoo26.JPEG',
-            'tattoo27.JPEG',
-            'tattoo28.JPEG',
-            'tattoo29.JPEG'
+            'tattoo1.JPEG', 'tattoo2.PNG', 'tattoo3.JPEG', 'tattoo4.jpeg', 'tattoo5.jpeg',
+            'tattoo6.jpeg', 'tattoo7.jpeg', 'tattoo8.PNG', 'tattoo9.PNG', 'tattoo10.PNG',
+            'tattoo11.jpeg', 'tattoo12.jpg', 'tattoo13.jpeg', 'tattoo14.jpeg', 'tattoo15.jpeg',
+            'tattoo16.jpeg', 'tattoo17.JPEG', 'tattoo18.JPEG', 'tattoo19.JPEG', 'tattoo20.MP4',
+            'tattoo21.JPEG', 'tattoo22.JPEG', 'tattoo23.JPEG', 'tattoo24.JPEG', 'tattoo25.JPEG',
+            'tattoo26.JPEG', 'tattoo27.JPEG', 'tattoo28.JPEG', 'tattoo29.JPEG'
         ];
 
         const gridContainer = document.getElementById('grid-container');
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxVideo = document.getElementById('lightbox-video');
 
-        // 動態生成網格檔案
         files.forEach(file => {
             const fileExtension = file.split('.').pop().toLowerCase();
             
-            // 判斷是否為影片
             if (fileExtension === 'mp4' || fileExtension === 'mov') {
                 const video = document.createElement('video');
                 video.src = folderPath + file;
-                // 設定為動態磚塊：無聲、自動循環
                 video.setAttribute('autoplay', 'true');
                 video.setAttribute('loop', 'true');
-                video.setAttribute('muted', 'true');
+                video.setAttribute('muted', 'true'); // 網格中保持靜音
                 video.setAttribute('playsinline', 'true');
-                video.style.cursor = 'default'; // 影片目前不特別放大，避免互動衝突
+                video.style.cursor = 'zoom-in';
+                
+                video.addEventListener('click', () => {
+                    lightboxImg.style.display = 'none';
+                    lightboxVideo.style.display = 'block';
+                    lightboxVideo.src = video.src;
+                    lightboxVideo.muted = false; // 👈 放大時解除靜音！
+                    lightbox.classList.add('active');
+                });
                 
                 gridContainer.appendChild(video);
             } else {
-                // 處理一般圖片
                 const imgElement = document.createElement('img');
                 imgElement.src = folderPath + file;
                 imgElement.setAttribute('loading', 'lazy'); 
                 
-                // 綁定圖片點擊放大
                 imgElement.addEventListener('click', () => {
+                    lightboxVideo.style.display = 'none';
+                    lightboxVideo.pause();
+                    lightboxVideo.src = '';
+                    lightboxImg.style.display = 'block';
                     lightboxImg.src = imgElement.src; 
                     lightbox.classList.add('active'); 
                 });
@@ -107,9 +89,11 @@
             }
         });
 
-        // 點擊任意處關閉放大圖片
-        lightbox.addEventListener('click', () => {
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightboxVideo) return;
             lightbox.classList.remove('active');
+            lightboxVideo.pause();
+            lightboxVideo.src = '';
         });
     </script>
 </body>
