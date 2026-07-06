@@ -244,7 +244,7 @@ body {
    4. 各頁面排版佈局
 ========================================= */
 /* Photography 滿版網格 */
-.photography-body { background-color: #000; }
+.photography-body { background-color: #fff; }
 .photo-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -426,7 +426,7 @@ body {
     margin: 0 auto;
     padding-left: 20px;
     padding-right: 20px;
-    color: #000;
+    color: #fff;
 }
 
 /* 頂部文字區塊 */
