@@ -460,8 +460,8 @@ body {
 /* 插畫區塊 */
 .about-illustration {
     text-align: center;
-    margin-top: 5px;    /* 決定與上方藍色文字的距離（可自行調小或調大） */
-    margin-bottom: 10px; /* 決定與下方 INDEPENDENT PRACTICE 的距離 */
+    margin-top: 10px;    /* 決定與上方藍色文字的距離（可自行調小或調大） */
+    margin-bottom: 20px; /* 決定與下方 INDEPENDENT PRACTICE 的距離 */
 }
 
 .about-illustration img {
