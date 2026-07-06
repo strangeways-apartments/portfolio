@@ -19,92 +19,72 @@
                 <a href="photography.html">PHOTOGRAPHY</a>
                 <a href="tattoo.html">TATTOO</a>
                 <a href="branding.html">BRANDING</a>
-                <a href="illustration.html">ILLUSTRATION</a>
                 <a href="about.html">ABOUT</a>
             </div>
         </nav>
     </header>
 
-    <!-- 延用 Photography 的 4 欄網格佈局 -->
     <main class="photo-grid" id="photo-container"></main>
 
-    <!-- 點擊放大區塊 -->
     <div class="lightbox" id="lightbox">
-        <img src="" id="lightbox-img" alt="Enlarged View">
+        <img src="" id="lightbox-img" alt="Enlarged View" style="display: none;">
+        <video id="lightbox-video" controls autoplay playsinline style="display: none; max-width: 100%; max-height: 100%; object-fit: contain; box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);"></video>
     </div>
 
     <footer class="fixed-footer">© 2025 Strangeways Apartments. All rights reserved.</footer>
 
     <script>
-        // 1. 設定檔案路徑
-        const folderPath = 'others/'; 
-
-        // 2. 匯入 28 個檔案 (包含圖片與影片)
+        const folderPath = 'portfolio/others/'; 
         const files = [
-            '22.JPG',
-            'IMG_3162.jpg',
-            'IMG_3163.jpg',
-            'Untitledsd.png',
-            'furn-Artboard 2.webp',
-            'furn-Artboard 27.webp',
-            'mai2.mov',
-            'other1.jpg',
-            'other10.jpg',
-            'other11.jpg',
-            'other12.jpg',
-            'other13.jpg',
-            'other14.jpg',
-            'other15.jpg',
-            'other16.jpg',
-            'other17.jpg',
-            'other18.JPG',
-            'other19.jpg',
-            'other2.jpg',
-            'other20.jpg',
-            'other21.jpg',
-            'other3.jpg',
-            'other4.jpg',
-            'other5.jpg',
-            'other6.jpg',
-            'other7.png',
-            'other8.jpg',
-            'other9.png'
+            '22.JPG', 'IMG_3162.jpg', 'IMG_3163.jpg', 'Untitledsd.png', 'furn-Artboard 2.webp',
+            'furn-Artboard 27.webp', 'mai2.mov', 'other1.jpg', 'other10.jpg', 'other11.jpg',
+            'other12.jpg', 'other13.jpg', 'other14.jpg', 'other15.jpg', 'other16.jpg',
+            'other17.jpg', 'other18.JPG', 'other19.jpg', 'other2.jpg', 'other20.jpg',
+            'other21.jpg', 'other3.jpg', 'other4.jpg', 'other5.jpg', 'other6.jpg',
+            'other7.png', 'other8.jpg', 'other9.png'
         ];
 
         const container = document.getElementById('photo-container');
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxVideo = document.getElementById('lightbox-video');
 
-        // 批次生成圖片與影片
         files.forEach(file => {
             const fileExtension = file.split('.').pop().toLowerCase();
             
-            // 判斷是否為影片格式
             if (fileExtension === 'mov' || fileExtension === 'mp4') {
                 const video = document.createElement('video');
-                // 處理檔名空白
                 video.src = folderPath + file.replace(/ /g, '%20');
-                // 設定影片為無聲、自動播放且循環，當作動態磚塊
                 video.setAttribute('autoplay', 'true');
                 video.setAttribute('loop', 'true');
-                video.setAttribute('muted', 'true');
+                video.setAttribute('muted', 'true'); // 網格中保持靜音以利自動播放
                 video.setAttribute('playsinline', 'true');
-                // 強制套用與照片相同的 CSS 長寬比例
                 video.style.width = '100%';
                 video.style.aspectRatio = '1 / 1';
                 video.style.objectFit = 'cover';
                 video.style.display = 'block';
+                video.style.cursor = 'zoom-in';
+                
+                // 點擊影片放大：開啟聲音與控制面板
+                video.addEventListener('click', () => {
+                    lightboxImg.style.display = 'none';
+                    lightboxVideo.style.display = 'block';
+                    lightboxVideo.src = video.src;
+                    lightboxVideo.muted = false; // 👈 放大時解除靜音！
+                    lightbox.classList.add('active');
+                });
                 
                 container.appendChild(video);
             } else {
-                // 一般圖片處理
                 const img = document.createElement('img');
-                // 處理檔名空白，避免瀏覽器找不到檔案
                 img.src = folderPath + file.replace(/ /g, '%20');
                 img.setAttribute('loading', 'lazy'); 
                 
-                // 綁定點擊放大事件
                 img.addEventListener('click', () => {
+                    lightboxVideo.style.display = 'none';
+                    lightboxVideo.pause();
+                    lightboxVideo.src = '';
+                    lightboxImg.style.display = 'block';
                     lightboxImg.src = img.src;
                     lightbox.classList.add('active');
                 });
@@ -113,8 +93,13 @@
             }
         });
 
-        // 點擊任意處關閉放大圖片
-        lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+        // 點擊關閉，並確保影片停止播放與消音
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightboxVideo) return; // 點擊影片控制列時不要關閉
+            lightbox.classList.remove('active');
+            lightboxVideo.pause();
+            lightboxVideo.src = '';
+        });
     </script>
 </body>
 </html>
