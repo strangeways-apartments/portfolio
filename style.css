@@ -352,9 +352,9 @@ body {
 
 .weibo-link {
     color: #000000;
-    font-size: 16pt;
+    font-size: 13pt;
     text-decoration: none;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'FHWA-2020';
     font-weight: bold;
     letter-spacing: 1px;
     transition: color 0.3s ease;
@@ -367,7 +367,7 @@ body {
 .click-hint {
     color: #333333;
     font-size: 10pt;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'karmilla';
     letter-spacing: 0.5px;
 }
 
