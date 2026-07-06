@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Tattoo | Strangeways Apartments</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- 強制瀏覽器抓取最新 CSS -->
+    <link rel="stylesheet" href="style.css?v=3.0">
 </head>
 <body class="inner-body">
 
@@ -12,6 +13,7 @@
         <a href="index.html" class="logo-container">
             <img src="assets/logo.png" alt="Logo">
         </a>
+        <!-- 加入 tabindex="0" 賦予 iOS 點擊許可證 -->
         <nav class="nav-menu" tabindex="0">
             <div class="current-page">TATTOO</div>
             <div class="dropdown-links">
@@ -19,7 +21,6 @@
                 <a href="photography.html">PHOTOGRAPHY</a>
                 <a href="branding.html">BRANDING</a>
                 <a href="others.html">OTHERS</a>
-                <a href="videos.html">VIDEOS</a>
                 <a href="about.html">ABOUT</a>
             </div>
         </nav>
@@ -27,6 +28,7 @@
 
     <main class="grid-6-container" id="grid-container"></main>
 
+    <!-- 點擊放大區塊 -->
     <div class="lightbox" id="lightbox">
         <img src="" id="lightbox-img" alt="Enlarged View" style="display: none;">
         <video id="lightbox-video" controls autoplay playsinline style="display: none; max-width: 100%; max-height: 100%; object-fit: contain; box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);"></video>
@@ -58,15 +60,21 @@
                 video.src = folderPath + file;
                 video.setAttribute('autoplay', 'true');
                 video.setAttribute('loop', 'true');
-                video.setAttribute('muted', 'true'); // 網格中保持靜音
+                video.setAttribute('muted', 'true'); 
                 video.setAttribute('playsinline', 'true');
+                
+                /* 👈 關鍵修復：把圖片的長寬限制同樣套用到影片上！ */
+                video.style.width = '100%';
+                video.style.aspectRatio = '4 / 3'; 
+                video.style.objectFit = 'cover';
+                video.style.display = 'block';
                 video.style.cursor = 'zoom-in';
                 
                 video.addEventListener('click', () => {
                     lightboxImg.style.display = 'none';
                     lightboxVideo.style.display = 'block';
                     lightboxVideo.src = video.src;
-                    lightboxVideo.muted = false; // 👈 放大時解除靜音！
+                    lightboxVideo.muted = false; 
                     lightbox.classList.add('active');
                 });
                 
