@@ -352,10 +352,9 @@ body {
 
 .weibo-link {
     color: #000000;
-    font-size: 13pt;
+    font-size: 12pt;
     text-decoration: none;
     font-family: 'FHWA-2020';
-    font-weight: bold;
     letter-spacing: 1px;
     transition: color 0.3s ease;
 }
@@ -593,7 +592,7 @@ body {
 .video-card:hover img { opacity: 0.7; }
 
 .video-info { margin-top: 15px; }
-.video-info h3 { font-size: 12pt; font-family: 'FHWA Series Emod 2024', sans-serif; }
+.video-info h3 { font-size: 12pt; font-family: 'FHWA-2020', sans-serif; }
 .video-info p { font-size: 10pt; font-family: 'karmilla', sans-serif; margin-top: 5px; }
 
 .footer-link {
