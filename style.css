@@ -352,9 +352,9 @@ body {
 
 .weibo-link {
     color: #000000;
-    font-size: 16pt;
+    font-size: 13pt;
     text-decoration: none;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'FHWA-2020';
     font-weight: bold;
     letter-spacing: 1px;
     transition: color 0.3s ease;
@@ -367,7 +367,7 @@ body {
 .click-hint {
     color: #333333;
     font-size: 10pt;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'karmilla';
     letter-spacing: 0.5px;
 }
 
@@ -392,6 +392,31 @@ body {
 }
 
 .grid-6-container img:hover {
+    opacity: 0.7;
+}
+
+/* 2. 新增：Tattoo 專屬直式網格 */
+.grid-tattoo-container {
+    padding: 130px 40px 60px 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* 調整為 3:4 直式比例，且這會只對 tattoo 頁面生效 */
+.grid-tattoo-container img, 
+.grid-tattoo-container video {
+    width: 100%;
+    aspect-ratio: 3 / 4; 
+    object-fit: cover;
+    cursor: zoom-in;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.grid-tattoo-container img:hover,
+.grid-tattoo-container video:hover {
     opacity: 0.7;
 }
 
