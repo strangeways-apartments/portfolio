@@ -315,7 +315,7 @@ body {
 
 /* =========================================
    Videos 頁面排版佈局
-========================================= */
+
 .videos-container {
     padding-top: 150px;
     padding-bottom: 100px;
@@ -369,6 +369,8 @@ body {
     font-family: 'karmilla';
     letter-spacing: 0.5px;
 }
+
+========================================= */
 
 /* =========================================
    6. 六宮格佈局 (Graphik, Branding, Illustration 通用)
