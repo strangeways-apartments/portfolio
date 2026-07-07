@@ -4,22 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Videos | Strangeways Apartments</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=5.0">
 </head>
 <body class="inner-body">
-    
-    <!-- 永遠鎖在最上層的 Header -->
+
     <header class="fixed-header">
         <a href="index.html" class="logo-container">
-            <img src="assets/logo.png" alt="Strangeways Apartments Logo">
+            <img src="assets/logo.png" alt="Logo">
         </a>
-        
         <nav class="nav-menu" tabindex="0">
-            <!-- 當下頁面 -->
             <div class="current-page">VIDEOS</div>
-            
             <div class="dropdown-links">
-                <!-- 下拉選單 (請依據你的實際需求增減) -->
                 <a href="graphik.html">GRAPHIK</a>
                 <a href="photography.html">PHOTOGRAPHY</a>
                 <a href="tattoo.html">TATTOO</a>
@@ -30,29 +25,46 @@
         </nav>
     </header>
 
-    <!-- 影片頁面專屬佈局 (左右分欄) -->
-    <main class="videos-container">
-        
-        <!-- 左邊：四格拼圖 -->
-        <div class="videos-left">
-            <img src="video/video.jpeg" alt="Jing Daily Videos">
-        </div>
-        
-        <!-- 右邊：文字與超連結 -->
-        <div class="videos-right">
-            <!-- target="_blank" 讓連結在開新分頁開啟，不會讓使用者離開你的作品集 -->
-            <a href="https://weibo.com/jingdaily?tabtype=newVideo" target="_blank" class="weibo-link">
-                JING DAILY WEIBO CHANNEL
-            </a>
-            <p class="click-hint">CLICK INTO PAGE FOR MORE VIDEOS</p>
-        </div>
-        
-    </main>
+    <main class="videos-grid-container" id="video-container"></main>
 
-    <!-- 永遠鎖在最下層的 Footer -->
-    <footer class="fixed-footer">
-        © 2025 Strangeways Apartments. All rights reserved.
-    </footer>
+    <footer class="fixed-footer">© 2025 Strangeways Apartments. All rights reserved.</footer>
 
+    <script>
+        // 影片資料庫
+        const videos = [
+            { title: "INTERVIEW WITH BASTIEN DAGUZAN", sub: "CEO, FEAR OF GOD", url: "http://t.cn/A6nS6Hj3", img: "furn-Artboard 12.jpg" },
+            { title: "INTERVIEW WITH ROCCO LIU", sub: "Editor-in-Chief, Vogue China", url: "http://t.cn/A6YLgUMM", img: "furn-Artboard 12.jpg" },
+            { title: "INTERVIEW WITH SAMUEL YANG", sub: "Creative Director, SAMUELGUIYANG", url: "http://t.cn/A68dRk6H", img: "furn-Artboard 12.jpg" },
+            { title: "INTERVIEW WITH GUAN LIN", sub: "Creative Director, SHORT SENTENCE", url: "http://t.cn/A6nc3jsZ", img: "furn-Artboard 12.jpg" },
+            { title: "INTERVIEW WITH NI LISHI", sub: "Founder, Melt Season", url: "http://t.cn/A6R3taw7", img: "furn-Artboard 12.jpg" }
+        ];
+
+        const container = document.getElementById('video-container');
+
+        videos.forEach(v => {
+            const card = document.createElement('a');
+            card.href = v.url;
+            card.target = "_blank";
+            card.className = "video-card";
+            
+            card.innerHTML = `
+                <img src="${v.img}" alt="${v.title}">
+                <div class="video-info">
+                    <h3>${v.title}</h3>
+                    <p>${v.sub}</p>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+
+        // 加上最後一個固定連結
+        const footerCard = document.createElement('div');
+        footerCard.className = "video-card footer-link";
+        footerCard.innerHTML = `
+            <h3>JING DAILY WEIBO CHANNEL</h3>
+            <p>CLICK INTO PAGE FOR MORE VIDEOS</p>
+        `;
+        container.appendChild(footerCard);
+    </script>
 </body>
 </html>
