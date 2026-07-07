@@ -594,7 +594,7 @@ body {
 .video-card:hover img { opacity: 0.7; }
 
 .video-info { margin-top: 15px; }
-.video-info h3 { font-size: 11pt; font-family: 'FHWA-2020', sans-serif; }
+.video-info h3 { font-size: 10pt; font-family: 'FHWA-2020', sans-serif; }
 .video-info p { font-size: 10pt; font-family: 'karmilla', sans-serif; margin-top: 5px; }
 
 .footer-link {
@@ -603,6 +603,18 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+/* 讓 footer-link 內的文字直接使用與 .video-info 相同的字體樣式 */
+.footer-link h3 { 
+    font-size: 10pt; 
+    font-family: 'FHWA-2020', sans-serif; 
+}
+
+.footer-link p { 
+    font-size: 10pt; 
+    font-family: 'karmilla', sans-serif; 
+    margin-top: 5px; 
 }
 
 /* =========================================
