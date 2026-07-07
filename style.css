@@ -567,6 +567,49 @@ body {
     margin-bottom: 5px;
 }
 
+/* Videos 專屬網格 */
+.videos-grid-container {
+    padding: 130px 40px 60px 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.video-card {
+    text-decoration: none;
+    color: #000;
+    display: block;
+}
+
+.video-card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: opacity 0.3s;
+}
+
+.video-card:hover img { opacity: 0.7; }
+
+.video-info { margin-top: 15px; }
+.video-info h3 { font-size: 12pt; font-family: 'FHWA Series Emod 2024', sans-serif; }
+.video-info p { font-size: 10pt; font-family: 'karmilla', sans-serif; margin-top: 5px; }
+
+.footer-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #eee;
+    text-align: center;
+}
+
+/* 手機版適配 */
+@media (max-width: 767px) {
+    .videos-grid-container { grid-template-columns: 1fr; }
+}
+
 /* =========================================
    5. 響應式微調 (RWD)
 ========================================= */
@@ -615,6 +658,11 @@ body {
         text-align: center;
         padding-top: 120px;
     }
+
+    .videos-grid-container { 
+        grid-template-columns: 1fr; 
+    }
+   
     .videos-left {
         justify-content: center;
     }
